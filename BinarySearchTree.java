@@ -60,13 +60,15 @@ class BST {
 
     // Delete a node.
     tNode deleteRec(tNode root, int key) {
-        if (root == null) return root;
+        if (root == null) {
+            return root;
+        }
 
-        if (key < root.key)
+        if (key < root.key) {
             root.left = deleteRec(root.left, key);
-        else if (key > root.key)
+        }else if (key > root.key) {
             root.right = deleteRec(root.right, key);
-        else {
+        }else {
             // Node with one or no child
             if (root.left == null)
                 return root.right;
@@ -93,7 +95,7 @@ class BST {
         root = deleteRec(root, key);
     }
 
-    // Remove all even numbers
+    // Remove all even numbers.
     void removeEvens(int max) {
         for (int i = 2; i <= max; i += 2) {
             delete(i);
@@ -103,14 +105,14 @@ class BST {
 
 public class tryBST {
 
-    // Compute average
+    // Computing the average.
     public static double average(long[] arr) {
         double sum = 0;
         for (long val : arr) sum += val;
         return sum / arr.length;
     }
 
-    // Compute standard deviation
+    // Computing the standard deviation
     public static double stdDev(long[] arr, double mean) {
         double sum = 0;
         for (long val : arr) {
@@ -121,7 +123,7 @@ public class tryBST {
 
     public static void main(String[] args) {
 
-        int n = 15; // Adjust this so time > 1000ms
+        int n = 15; // Adjusting this so time > 1000ms
         int max = (int)Math.pow(2, n) - 1;
         int repetitions = 30;
 
@@ -155,14 +157,14 @@ public class tryBST {
             deleteTimes[i] = endDelete - startDelete;
         }
 
-        // Compute stats
+        // Computing the stats
         double avgBuild = average(buildTimes);
         double stdBuild = stdDev(buildTimes, avgBuild);
 
         double avgDelete = average(deleteTimes);
         double stdDelete = stdDev(deleteTimes, avgDelete);
 
-        // Display results
+        // Displaying the results
         System.out.println("\nRESULTS TABLE");
         System.out.println("-----------------------------------------------------");
         System.out.printf("%-20s %-10s %-15s %-15s\n",
