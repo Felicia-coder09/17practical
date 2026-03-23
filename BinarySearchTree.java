@@ -58,7 +58,7 @@ class BST {
                isBSTUtil(node.right, node.key, max);
     }
 
-    // Delete a node
+    // Delete a node.
     tNode deleteRec(tNode root, int key) {
         if (root == null) return root;
 
