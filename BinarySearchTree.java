@@ -1,4 +1,4 @@
-// binary search tree
+// binary search tree.
 import java.util.*;
 
 class tNode {
@@ -14,7 +14,7 @@ class tNode {
 class BST {
     tNode root;
 
-    // Insert into BST
+    // Inserting into BST.
     tNode insertRec(tNode root, int key) {
         if (root == null) {
             return new tNode(key);
