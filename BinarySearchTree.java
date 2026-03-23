@@ -1,5 +1,6 @@
 // binary search tree.
 
+
 class tNode {
 
     int key;
