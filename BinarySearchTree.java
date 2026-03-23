@@ -32,7 +32,7 @@ class BST {
         root = insertRec(root, key);
     }
 
-    // Build balanced BST using middle-first strategy
+    // Building balanced BST using middle-first strategy
     void buildBalanced(int start, int end) {
         if (start > end) return;
 
