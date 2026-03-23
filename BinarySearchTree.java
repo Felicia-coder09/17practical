@@ -1,7 +1,7 @@
 // binary search tree.
-import java.util.*;
 
 class tNode {
+
     int key;
     tNode left, right;
 
@@ -12,18 +12,20 @@ class tNode {
 }
 
 class BST {
+
     tNode root;
 
-    // Inserting into BST.
+    // Insert into BST
     tNode insertRec(tNode root, int key) {
         if (root == null) {
             return new tNode(key);
         }
 
-        if (key < root.key)
+        if (key < root.key) {
             root.left = insertRec(root.left, key);
-        else if (key > root.key)
+        } else if (key > root.key) {
             root.right = insertRec(root.right, key);
+        }
 
         return root;
     }
@@ -32,9 +34,11 @@ class BST {
         root = insertRec(root, key);
     }
 
-    // Building balanced BST using middle-first strategy.
+    // Build balanced BST using middle-first strategy
     void buildBalanced(int start, int end) {
-        if (start > end) return;
+        if (start > end) {
+            return;
+        }
 
         int mid = (start + end) / 2;
         insert(mid);
@@ -43,22 +47,25 @@ class BST {
         buildBalanced(mid + 1, end);
     }
 
-    // Check if BST.
+    // Check if BST
     boolean isBST() {
         return isBSTUtil(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
     boolean isBSTUtil(tNode node, int min, int max) {
-        if (node == null) return true;
+        if (node == null) {
+            return true;
+        }
 
-        if (node.key <= min || node.key >= max)
+        if (node.key <= min || node.key >= max) {
             return false;
+        }
 
-        return isBSTUtil(node.left, min, node.key) &&
-               isBSTUtil(node.right, node.key, max);
+        return isBSTUtil(node.left, min, node.key)
+                && isBSTUtil(node.right, node.key, max);
     }
 
-    // Delete a node.
+    // Delete a node
     tNode deleteRec(tNode root, int key) {
         if (root == null) {
             return root;
@@ -66,14 +73,15 @@ class BST {
 
         if (key < root.key) {
             root.left = deleteRec(root.left, key);
-        }else if (key > root.key) {
+        } else if (key > root.key) {
             root.right = deleteRec(root.right, key);
-        }else {
+        } else {
             // Node with one or no child
-            if (root.left == null)
+            if (root.left == null) {
                 return root.right;
-            else if (root.right == null)
+            } else if (root.right == null) {
                 return root.left;
+            }
 
             // Node with two children
             root.key = minValue(root.right);
@@ -95,7 +103,7 @@ class BST {
         root = deleteRec(root, key);
     }
 
-    // Remove all even numbers.
+    // Remove all even numbers, assuming keys are 1 to max 
     void removeEvens(int max) {
         for (int i = 2; i <= max; i += 2) {
             delete(i);
@@ -103,16 +111,18 @@ class BST {
     }
 }
 
-public class tryBST {
+public class tryBest {
 
-    // Computing the average.
+    // Compute average of array
     public static double average(long[] arr) {
         double sum = 0;
-        for (long val : arr) sum += val;
+        for (long val : arr) {
+            sum += val;
+        }
         return sum / arr.length;
     }
 
-    // Computing the standard deviation
+    // Compute standard deviation of array
     public static double stdDev(long[] arr, double mean) {
         double sum = 0;
         for (long val : arr) {
@@ -123,8 +133,8 @@ public class tryBST {
 
     public static void main(String[] args) {
 
-        int n = 15; // Adjusting this so time > 1000ms
-        int max = (int)Math.pow(2, n) - 1;
+        int n = 15; // Adjust this so time > 1000ms 
+        int max = (int) Math.pow(2, n) - 1;
         int repetitions = 30;
 
         long[] buildTimes = new long[repetitions];
@@ -142,7 +152,7 @@ public class tryBST {
             long endBuild = System.currentTimeMillis();
             buildTimes[i] = endBuild - startBuild;
 
-            // Verify BST
+            // Verify BST structure
             if (!tree.isBST()) {
                 System.out.println("Tree is NOT a BST!");
                 return;
@@ -157,14 +167,14 @@ public class tryBST {
             deleteTimes[i] = endDelete - startDelete;
         }
 
-        // Computing the stats
+        // Compute stats for build and delete
         double avgBuild = average(buildTimes);
         double stdBuild = stdDev(buildTimes, avgBuild);
 
         double avgDelete = average(deleteTimes);
         double stdDelete = stdDev(deleteTimes, avgDelete);
 
-        // Displaying the results
+        // Display results 
         System.out.println("\nRESULTS TABLE");
         System.out.println("-----------------------------------------------------");
         System.out.printf("%-20s %-10s %-15s %-15s\n",
@@ -176,4 +186,6 @@ public class tryBST {
         System.out.printf("%-20s %-10d %-15.2f %-15.2f\n",
                 "Remove evens", n, avgDelete, stdDelete);
     }
+}
+
 }
